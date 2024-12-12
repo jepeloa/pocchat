@@ -27,12 +27,12 @@ services:
       - 'WEBUI_SECRET_KEY='
       - 'WEBUI_AUTH'
       - 'WEBUI_URL='
-      - 'ENABLE_OAUTH_SIGNUP=true'
+      - 'ENABLE_OAUTH_SIGNUP=false'
       - 'ENABLE_LOGIN_FORM=true'
-      - 'ENABLE_SIGNUP=false'
-      - 'DEFAULT_USER_ROLE=user'
-      - 'GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}'
-      - 'GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}'
+      - 'ENABLE_SIGNUP=true'
+      - 'DEFAULT_USER_ROLE=admin'
+      #- 'GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}'
+      #- 'GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}'
       - 'SAFE_MODE=true'
     extra_hosts:
       - host.docker.internal:host-gateway
