@@ -100,7 +100,7 @@
 
 <svelte:head>
 	<title>
-		{`Ava - Avalian `}
+		{`Nexus - SC `}
 	</title>
 </svelte:head>
 
