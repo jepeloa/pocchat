@@ -45,7 +45,7 @@
 					>
 						<Tooltip
 							content={marked.parse(
-								sanitizeResponseContent($i18n.t('Hola, {{name}} mi nombre es Nexus, en que puedo ayudarte hoy?', { name: $user.name }))
+								sanitizeResponseContent(models[selectedModelIdx]?.info?.meta?.description ?? '')
 							)}
 							placement="right"
 						>
@@ -83,7 +83,7 @@
 			<div>
 				<div class=" capitalize line-clamp-1" in:fade={{ duration: 200 }}>
 					{#if models[selectedModelIdx]?.name}
-						{$i18n.t('Hello, {{name}}', { name: $user.name })}
+						{models[selectedModelIdx]?.name}
 					{:else}
 						{$i18n.t('Hello, {{name}}', { name: $user.name })}
 					{/if}
