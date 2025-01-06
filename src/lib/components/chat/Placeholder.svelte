@@ -140,9 +140,9 @@
 
 					<div class=" capitalize text-3xl sm:text-4xl line-clamp-1" in:fade={{ duration: 100 }}>
 						{#if models[selectedModelIdx]?.name}
-							{models[selectedModelIdx]?.name}
+							{$i18n.t('Hola, {{name}} mi nombre es Nexus en que puedo ayudarte?', { name: $user.name })}
 						{:else}
-							{$i18n.t('Hello, {{name}}', { name: $user.name })}
+							{$i18n.t('Hello, {{name}} mi nombre es Nexus en que puedo ayudarte?', { name: $user.name })}
 						{/if}
 					</div>
 				</div>
