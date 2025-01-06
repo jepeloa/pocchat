@@ -83,7 +83,7 @@
 			<div>
 				<div class=" capitalize line-clamp-1" in:fade={{ duration: 200 }}>
 					
-					{$i18n.t('Hola, {{name}}. Soy Nexus tu asistente virtual. ¿En que puedo ayudarte hoy?', { name: $user.name })}
+					{@html $i18n.t('Hola, {{name}} mi nombre es Nexus, en que puedo ayudarte hoy?', { name: $user.name })}
 					
 				</div>
 
