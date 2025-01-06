@@ -82,11 +82,9 @@
 		>
 			<div>
 				<div class=" capitalize line-clamp-1" in:fade={{ duration: 200 }}>
-					{#if models[selectedModelIdx]?.name}
-						{$i18n.t('Hola, {{name}}. Soy Nexus tu asistente virtual. ¿En que puedo ayudarte hoy?', { name: $user.name })}
-					{:else}
-						{$i18n.t('Hola, {{name}}. Soy Nexus tu asistente virtual. ¿En que puedo ayudarte hoy?', { name: $user.name })}
-					{/if}
+					
+					{$i18n.t('Hola, {{name}}. Soy Nexus tu asistente virtual. ¿En que puedo ayudarte hoy?', { name: $user.name })}
+					
 				</div>
 
 				<div in:fade={{ duration: 200, delay: 200 }}>
