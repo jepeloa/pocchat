@@ -45,7 +45,7 @@
 					>
 						<Tooltip
 							content={marked.parse(
-								sanitizeResponseContent(models[selectedModelIdx]?.info?.meta?.description ?? '')
+								sanitizeResponseContent($i18n.t('Hola, {{name}} mi nombre es Nexus, en que puedo ayudarte hoy?', { name: $user.name }))
 							)}
 							placement="right"
 						>
