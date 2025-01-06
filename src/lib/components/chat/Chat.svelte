@@ -566,7 +566,7 @@
 						? chatContent.history
 						: convertMessagesToHistory(chatContent.messages);
 
-				chatTitle.set('Hola mi nombre es neus en que puedo ayudarte hoy');
+				chatTitle.set(chatContent.title);
 
 				const userSettings = await getUserSettings(localStorage.token);
 
