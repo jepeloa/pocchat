@@ -81,17 +81,44 @@
 			class=" mt-2 mb-4 text-3xl text-gray-800 dark:text-gray-100 font-medium text-left flex items-center gap-4 font-primary"
 		>
 			<div>
-				<!-- Aquí el saludo personalizado forzado -->
 				<div class=" capitalize line-clamp-1" in:fade={{ duration: 200 }}>
-					{@html $i18n.t('Hola, {{name}} mi nombre es Nexus, en que puedo ayudarte hoy?', { name: $user.name })}
+					{#if models[selectedModelIdx]?.name}
+						{$i18n.t('Hello, {{name}}', { name: $user.name })}
+					{:else}
+						{$i18n.t('Hello, {{name}}', { name: $user.name })}
+					{/if}
 				</div>
 
-				<!-- Elimina la descripción del modelo para evitar interferencias -->
 				<div in:fade={{ duration: 200, delay: 200 }}>
-					<div class=" font-medium text-gray-400 dark:text-gray-500 line-clamp-1 font-p">
-						<!-- Mantiene el saludo incluso si hay descripción -->
-						{@html $i18n.t('Hola, {{name}} mi nombre es Nexus, en que puedo ayudarte hoy?', { name: $user.name })}
-					</div>
+					{#if models[selectedModelIdx]?.info?.meta?.description ?? null}
+						<div
+							class="mt-0.5 text-base font-normal text-gray-500 dark:text-gray-400 line-clamp-3 markdown"
+						>
+							{@html marked.parse(
+								sanitizeResponseContent(models[selectedModelIdx]?.info?.meta?.description)
+							)}
+						</div>
+						{#if models[selectedModelIdx]?.info?.meta?.user}
+							<div class="mt-0.5 text-sm font-normal text-gray-400 dark:text-gray-500">
+								By
+								{#if models[selectedModelIdx]?.info?.meta?.user.community}
+									<a
+										href="https://openwebui.com/m/{models[selectedModelIdx]?.info?.meta?.user
+											.username}"
+										>{models[selectedModelIdx]?.info?.meta?.user.name
+											? models[selectedModelIdx]?.info?.meta?.user.name
+											: `@${models[selectedModelIdx]?.info?.meta?.user.username}`}</a
+									>
+								{:else}
+									{models[selectedModelIdx]?.info?.meta?.user.name}
+								{/if}
+							</div>
+						{/if}
+					{:else}
+						<div class=" font-medium text-gray-400 dark:text-gray-500 line-clamp-1 font-p">
+							{$i18n.t('How can I help you today?')}
+						</div>
+					{/if}
 				</div>
 			</div>
 		</div>
@@ -109,4 +136,3 @@
 		</div>
 	</div>
 {/key}
-
