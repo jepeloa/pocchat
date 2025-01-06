@@ -29,7 +29,7 @@
 
 	// Interface
 	let defaultModelId = '';
-	let showUsername = false;
+	let showUsername = true;
 	let richTextInput = true;
 
 	let landingPageMode = '';
