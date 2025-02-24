@@ -48,12 +48,10 @@
 			});
 
 			text = p.replaceAll('{{CLIPBOARD}}', clipboardText);
-
 			console.log('Clipboard text:', clipboardText, text);
 		}
 
 		prompt = text;
-
 		console.log(prompt);
 		await tick();
 
@@ -88,6 +86,13 @@
 		mounted = true;
 	});
 </script>
+
+<style>
+	/* Clase para forzar el color Pantone 2748 (aprox. #0033A0) */
+	.pantone-2748 {
+		color: #0033A0 !important;
+	}
+</style>
 
 {#key mounted}
 	<div class="m-auto w-full max-w-6xl px-2 xl:px-20 translate-y-6 py-24 text-center">
@@ -124,11 +129,13 @@
 									>
 										<img
 											crossorigin="anonymous"
-											src={model?.info?.meta?.profile_image_url ??
+											src={
+												model?.info?.meta?.profile_image_url ??
 												($i18n.language === 'dg-DG'
 													? `/doge.png`
-													: `${WEBUI_BASE_URL}/static/favicon.png`)}
-											class=" size-9 sm:size-10 rounded-full border-[1px] border-gray-200 dark:border-none"
+													: `${WEBUI_BASE_URL}/static/favicon.png`)
+											}
+											class="size-9 sm:size-10 rounded-full border-[1px] border-gray-200 dark:border-none"
 											alt="logo"
 											draggable="false"
 										/>
@@ -138,7 +145,7 @@
 						</div>
 					</div>
 
-					<div class=" capitalize text-3xl sm:text-4xl line-clamp-1" in:fade={{ duration: 100 }}>
+					<div class="capitalize text-3xl sm:text-4xl line-clamp-1" in:fade={{ duration: 100 }}>
 						{#if models[selectedModelIdx]?.name}
 							{$i18n.t('Hello, {{name}}', { name: $user.name })}
 						{:else}
@@ -151,17 +158,22 @@
 					<div in:fade={{ duration: 100, delay: 50 }}>
 						{#if models[selectedModelIdx]?.info?.meta?.description ?? null}
 							<Tooltip
-								className=" w-fit"
+								className="w-fit"
 								content={marked.parse(
-									sanitizeResponseContent(models[selectedModelIdx]?.info?.meta?.description ?? '')
+									sanitizeResponseContent(
+										models[selectedModelIdx]?.info?.meta?.description ?? ''
+									)
 								)}
 								placement="top"
 							>
+								<!-- Agregamos la clase pantone-2748 para forzar el color -->
 								<div
-									class="mt-0.5 px-2 text-sm font-normal text-gray-500 dark:text-gray-400 line-clamp-2 max-w-xl markdown"
+									class="mt-0.5 px-2 text-sm font-normal text-gray-500 dark:text-gray-400 line-clamp-2 max-w-xl markdown pantone-2748"
 								>
 									{@html marked.parse(
-										sanitizeResponseContent(models[selectedModelIdx]?.info?.meta?.description)
+										sanitizeResponseContent(
+											models[selectedModelIdx]?.info?.meta?.description
+										)
 									)}
 								</div>
 							</Tooltip>
@@ -171,12 +183,12 @@
 									By
 									{#if models[selectedModelIdx]?.info?.meta?.user.community}
 										<a
-											href="https://openwebui.com/m/{models[selectedModelIdx]?.info?.meta?.user
-												.username}"
-											>{models[selectedModelIdx]?.info?.meta?.user.name
-												? models[selectedModelIdx]?.info?.meta?.user.name
-												: `@${models[selectedModelIdx]?.info?.meta?.user.username}`}</a
+											href="https://openwebui.com/m/{models[selectedModelIdx]?.info?.meta?.user.username}"
 										>
+											{models[selectedModelIdx]?.info?.meta?.user.name
+												? models[selectedModelIdx]?.info?.meta?.user.name
+												: `@${models[selectedModelIdx]?.info?.meta?.user.username}`}
+										</a>
 									{:else}
 										{models[selectedModelIdx]?.info?.meta?.user.name}
 									{/if}
@@ -218,9 +230,11 @@
 		<div class="mx-auto max-w-2xl font-primary" in:fade={{ duration: 200, delay: 200 }}>
 			<div class="mx-5">
 				<Suggestions
-					suggestionPrompts={models[selectedModelIdx]?.info?.meta?.suggestion_prompts ??
+					suggestionPrompts={
+						models[selectedModelIdx]?.info?.meta?.suggestion_prompts ??
 						$config?.default_prompt_suggestions ??
-						[]}
+						[]
+					}
 					on:select={(e) => {
 						selectSuggestionPrompt(e.detail);
 					}}
