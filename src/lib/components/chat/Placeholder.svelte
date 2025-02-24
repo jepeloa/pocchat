@@ -204,7 +204,7 @@
 						{transparentBackground}
 						{stopResponse}
 						{createMessagePair}
-						placeholder={$i18n.t('How can I help you today?')}
+						placeholder={$i18n.t('My name is NEXUS your virtual assistant, how can I help you today?')}
 						on:upload={(e) => {
 							dispatch('upload', e.detail);
 						}}
