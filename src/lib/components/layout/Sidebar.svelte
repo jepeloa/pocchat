@@ -403,16 +403,12 @@
 <div
 	bind:this={navElement}
 	id="sidebar"
-	class="h-screen max-h-[100dvh] min-h-screen select-none {$showSidebar
-		? 'md:relative w-[260px] max-w-[260px]'
-		: '-translate-x-[260px] w-[0px]'} bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-200 text-sm transition fixed z-50 top-0 left-0 overflow-x-hidden
-        "
+	style="background-color: #7DC3C6 !important;"
+	class={`h-screen max-h-[100dvh] min-h-screen select-none ${$showSidebar ? 'md:relative w-[260px] max-w-[260px]' : '-translate-x-[260px] w-[0px]'} bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-200 text-sm transition fixed z-50 top-0 left-0 overflow-x-hidden`}
 	data-state={$showSidebar}
 >
 	<div
-		class="py-2.5 my-auto flex flex-col justify-between h-screen max-h-[100dvh] w-[260px] overflow-x-hidden z-50 {$showSidebar
-			? ''
-			: 'invisible'}"
+		class="py-2.5 my-auto flex flex-col justify-between h-screen max-h-[100dvh] w-[260px] overflow-x-hidden z-50 {$showSidebar ? '' : 'invisible'}"
 	>
 		<div class="px-2.5 flex justify-between space-x-1 text-gray-600 dark:text-gray-400">
 			<a
@@ -550,9 +546,7 @@
 		</div>
 
 		<div
-			class="relative flex flex-col flex-1 overflow-y-auto {$temporaryChatEnabled
-				? 'opacity-20'
-				: ''}"
+			class="relative flex flex-col flex-1 overflow-y-auto {$temporaryChatEnabled ? 'opacity-20' : ''}"
 		>
 			{#if $temporaryChatEnabled}
 				<div class="absolute z-40 w-full h-full flex justify-center"></div>
@@ -711,10 +705,7 @@
 							{#each $chats as chat, idx}
 								{#if idx === 0 || (idx > 0 && chat.time_range !== $chats[idx - 1].time_range)}
 									<div
-										class="w-full pl-2.5 text-xs text-gray-500 dark:text-gray-500 font-medium {idx ===
-										0
-											? ''
-											: 'pt-5'} pb-1.5"
+										class="w-full pl-2.5 text-xs text-gray-500 dark:text-gray-500 font-medium {idx === 0 ? '' : 'pt-5'} pb-1.5"
 									>
 										{$i18n.t(chat.time_range)}
 										<!-- localisation keys for time_range to be recognized from the i18next parser (so they don't get automatically removed):
