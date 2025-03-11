@@ -155,7 +155,9 @@
 						on:submit|preventDefault={() => {
 							submitHandler();
 						}}
-					>
+					>   
+					    <img src="{WEBUI_BASE_URL}/static/splash.png" alt="Logo" class="logo-class" />
+						<br />
 						<div class="mb-1">
 							<div class=" text-2xl font-medium">
 								{#if mode === 'signin'}
