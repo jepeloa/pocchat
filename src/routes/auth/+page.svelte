@@ -18,6 +18,7 @@
 	let name = '';
 	let email = '';
 	let password = '';
+	let acceptTerms = false;
 
 	const setSessionUser = async (sessionUser) => {
 		if (sessionUser) {
@@ -56,6 +57,10 @@
 
 	const submitHandler = async () => {
 		if (mode === 'signin') {
+			if (!acceptTerms) {
+				toast.error('Debes aceptar los términos y condiciones para continuar');
+				return;
+			}
 			await signInHandler();
 		} else {
 			await signUpHandler();
@@ -233,16 +238,26 @@
 
 								<!-- Términos y Condiciones - Solo para login -->
 								{#if mode === 'signin'}
-									<div class="mt-3 text-xs text-center text-gray-600 dark:text-gray-400">
-										Al iniciar sesión, aceptas nuestros
-										<a
-											href="{WEBUI_BASE_URL}/static/terminos_condiciones.pdf"
-											target="_blank"
-											rel="noopener noreferrer"
-											class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 underline"
-										>
-											Términos y Condiciones de Uso
-										</a>
+									<div class="mt-3 text-xs text-center">
+										<div class="flex items-center justify-center space-x-2">
+											<input
+												type="checkbox"
+												id="acceptTerms"
+												bind:checked={acceptTerms}
+												class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+											/>
+											<label for="acceptTerms" class="text-gray-600 dark:text-gray-400">
+												Acepto los
+												<a
+													href="{WEBUI_BASE_URL}/static/terminos_condiciones.pdf"
+													target="_blank"
+													rel="noopener noreferrer"
+													class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 underline"
+												>
+													Términos y Condiciones de Uso
+												</a>
+											</label>
+										</div>
 									</div>
 								{/if}
 
@@ -261,6 +276,7 @@
 												} else {
 													mode = 'signin';
 												}
+												acceptTerms = false; // Reset checkbox when switching modes
 											}}
 										>
 											{mode === 'signin' ? $i18n.t('Sign up') : $i18n.t('Sign in')}
