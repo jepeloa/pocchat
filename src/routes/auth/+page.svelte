@@ -231,6 +231,21 @@
 									{mode === 'signin' ? $i18n.t('Sign in') : $i18n.t('Create Account')}
 								</button>
 
+								<!-- Términos y Condiciones - Solo para login -->
+								{#if mode === 'signin'}
+									<div class="mt-3 text-xs text-center text-gray-600 dark:text-gray-400">
+										Al iniciar sesión, aceptas nuestros
+										<a
+											href="{WEBUI_BASE_URL}/static/terminos_condiciones.pdf"
+											target="_blank"
+											rel="noopener noreferrer"
+											class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 underline"
+										>
+											Términos y Condiciones de Uso
+										</a>
+									</div>
+								{/if}
+
 								{#if $config?.features.enable_signup}
 									<div class=" mt-4 text-sm text-center">
 										{mode === 'signin'
