@@ -21,12 +21,25 @@
 
 	let mounted = false;
 	let selectedModelIdx = 0;
+	let currentSuggestionPrompts = [];
 
 	$: if (modelIds.length > 0) {
 		selectedModelIdx = models.length - 1;
 	}
 
 	$: models = modelIds.map((id) => $_models.find((m) => m.id === id));
+
+	$: {
+		const selectedModel = models[selectedModelIdx];
+		const modelPrompts = selectedModel?.info?.meta?.suggestion_prompts;
+		const defaultPrompts = $config?.default_prompt_suggestions;
+		
+		if (modelPrompts && Array.isArray(modelPrompts) && modelPrompts.length > 0) {
+			currentSuggestionPrompts = modelPrompts;
+		} else {
+			currentSuggestionPrompts = defaultPrompts ?? [];
+		}
+	}
 
 	onMount(() => {
 		mounted = true;
@@ -126,9 +139,7 @@
 		<div class=" w-full font-primary" in:fade={{ duration: 200, delay: 300 }}>
 			<Suggestions
 				className="grid grid-cols-2"
-				suggestionPrompts={models[selectedModelIdx]?.info?.meta?.suggestion_prompts ??
-					$config?.default_prompt_suggestions ??
-					[]}
+				suggestionPrompts={currentSuggestionPrompts}
 				on:select={(e) => {
 					submitPrompt(e.detail);
 				}}
