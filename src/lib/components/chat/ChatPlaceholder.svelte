@@ -30,15 +30,8 @@
 	$: models = modelIds.map((id) => $_models.find((m) => m.id === id));
 
 	$: {
-		const selectedModel = models[selectedModelIdx];
-		const modelPrompts = selectedModel?.info?.meta?.suggestion_prompts;
-		const defaultPrompts = $config?.default_prompt_suggestions;
-		
-		if (modelPrompts && Array.isArray(modelPrompts) && modelPrompts.length > 0) {
-			currentSuggestionPrompts = modelPrompts;
-		} else {
-			currentSuggestionPrompts = defaultPrompts ?? [];
-		}
+		// Always use admin-configured default prompts, ignore model-specific prompts
+		currentSuggestionPrompts = $config?.default_prompt_suggestions ?? [];
 	}
 
 	onMount(() => {
