@@ -116,6 +116,12 @@
 			}
 		}
 
+		// Filter suggestion prompts and convert empty arrays to null
+		if (info.meta.suggestion_prompts && Array.isArray(info.meta.suggestion_prompts)) {
+			const filtered = info.meta.suggestion_prompts.filter((prompt) => prompt.content !== '');
+			info.meta.suggestion_prompts = filtered.length > 0 ? filtered : null;
+		}
+
 		info.params.stop = params.stop ? params.stop.split(',').filter((s) => s.trim()) : null;
 		Object.keys(info.params).forEach((key) => {
 			if (info.params[key] === '' || info.params[key] === null) {

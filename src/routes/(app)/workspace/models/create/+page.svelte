@@ -159,7 +159,10 @@
 					...info.meta,
 					profile_image_url: info.meta.profile_image_url ?? '/static/favicon.png',
 					suggestion_prompts: info.meta.suggestion_prompts
-						? info.meta.suggestion_prompts.filter((prompt) => prompt.content !== '')
+						? (() => {
+								const filtered = info.meta.suggestion_prompts.filter((prompt) => prompt.content !== '');
+								return filtered.length > 0 ? filtered : null;
+						  })()
 						: null
 				},
 				params: { ...info.params, ...params }
