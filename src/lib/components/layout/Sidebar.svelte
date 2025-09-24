@@ -404,13 +404,13 @@
 	bind:this={navElement}
 	id="sidebar"
 	style="background-color: #F5F5F5 !important;"
-	class={`h-screen max-h-[100dvh] min-h-screen select-none ${$showSidebar ? 'md:relative w-[260px] max-w-[260px]' : '-translate-x-[260px] w-[0px]'} bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-200 text-sm transition fixed z-50 top-0 left-0 overflow-x-hidden`}
+	class={`h-screen max-h-[100dvh] min-h-screen select-none ${$showSidebar ? 'md:relative w-[260px] max-w-[260px]' : '-translate-x-[260px] w-[0px]'} bg-gray-50 text-black dark:bg-gray-950 dark:text-gray-200 text-sm transition fixed z-50 top-0 left-0 overflow-x-hidden`}
 	data-state={$showSidebar}
 >
 	<div
 		class="py-2.5 my-auto flex flex-col justify-between h-screen max-h-[100dvh] w-[260px] overflow-x-hidden z-50 {$showSidebar ? '' : 'invisible'}"
 	>
-		<div class="px-2.5 flex justify-between space-x-1 text-gray-600 dark:text-gray-400">
+		<div class="px-2.5 flex justify-between space-x-1 text-gray-800 dark:text-gray-400">
 			<a
 				id="sidebar-new-chat-button"
 				class="flex flex-1 justify-between rounded-lg px-2 h-full hover:bg-gray-100 dark:hover:bg-gray-900 transition"
@@ -482,7 +482,7 @@
 		</div>
 
 		{#if $user?.role === 'admin'}
-			<div class="px-2.5 flex justify-center text-gray-800 dark:text-gray-200">
+			<div class="px-2.5 flex justify-center text-black dark:text-gray-200">
 				<a
 					class="flex-grow flex space-x-3 rounded-lg px-2.5 py-2 hover:bg-gray-100 dark:hover:bg-gray-900 transition"
 					href="/workspace"
@@ -705,7 +705,7 @@
 							{#each $chats as chat, idx}
 								{#if idx === 0 || (idx > 0 && chat.time_range !== $chats[idx - 1].time_range)}
 									<div
-										class="w-full pl-2.5 text-xs text-gray-500 dark:text-gray-500 font-medium {idx === 0 ? '' : 'pt-5'} pb-1.5"
+										class="w-full pl-2.5 text-xs text-gray-700 dark:text-gray-500 font-medium {idx === 0 ? '' : 'pt-5'} pb-1.5"
 									>
 										{$i18n.t(chat.time_range)}
 										<!-- localisation keys for time_range to be recognized from the i18next parser (so they don't get automatically removed):
