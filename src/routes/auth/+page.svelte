@@ -166,7 +166,7 @@
 						<div class="mb-1">
 							<div class=" text-2xl font-medium">
 								{#if mode === 'signin'}
-									{$i18n.t(`Ingresar a NEXUS`, { WEBUI_NAME: 'NEXUS - San Cristobal' })}
+									{$i18n.t(`Ingresar a NEXUS`, { WEBUI_NAME: 'NEXUS' })}
 								{:else}
 									{$i18n.t(`Sign up to {{WEBUI_NAME}}`, { WEBUI_NAME: $WEBUI_NAME })}
 								{/if}
