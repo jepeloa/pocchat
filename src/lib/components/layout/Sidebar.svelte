@@ -403,7 +403,7 @@
 <div
 	bind:this={navElement}
 	id="sidebar"
-	style="background-color: #7DC3C6 !important;"
+	style="background-color: #F5F5F5 !important;"
 	class={`h-screen max-h-[100dvh] min-h-screen select-none ${$showSidebar ? 'md:relative w-[260px] max-w-[260px]' : '-translate-x-[260px] w-[0px]'} bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-200 text-sm transition fixed z-50 top-0 left-0 overflow-x-hidden`}
 	data-state={$showSidebar}
 >
