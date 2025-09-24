@@ -105,7 +105,7 @@
 
 <svelte:head>
 	<title>
-		{`Nexus - SC `}
+		{`NEXUS`}
 	</title>
 </svelte:head>
 
